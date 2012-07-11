@@ -1,12 +1,19 @@
+#require.config({
+#    #baseUrl: "http://ichi1234567.github.com/rnds/javascript"
+#    paths: {
+#        rndsUrl: "javascript"
+#    }
+#})
+
 require([
 ], () ->
-    console.log("display")
+    #console.log("display")
     #style
     lineSet = "line1"
     dotSet = "dot1"
 
     # size
-    margin = {top: 10, right: 15, bottom: 25, left: 40}
+    margin = {top: 15, right: 15, bottom: 25, left: 40}
     width = 600 - margin.left - margin.right
     height = 400 - margin.top - margin.bottom
 
@@ -71,6 +78,7 @@ require([
                 .attr("r", 2.5)
         )
 
+        # axis
         xAxis = d3.svg.axis()
             .scale(d3.scale.linear()
                     .domain(domainX)
@@ -91,4 +99,14 @@ require([
                 .attr("class", "y axis")
                 .call(yAxis)
 
+        # axis_name
+        $svg.append("text")
+            .attr("transform", "translate(8," + (height + 5) + ")")
+            .attr("dx", width)
+            .attr("text-anchor", "middle")
+            .text(parmas.d_name[0])
+        $svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("dx", 5)
+            .text(parmas.d_name[1])
     )

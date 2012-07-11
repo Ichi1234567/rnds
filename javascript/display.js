@@ -2,11 +2,10 @@
 
   require([], function() {
     var dotSet, height, line, lineSet, margin, width;
-    console.log("display");
     lineSet = "line1";
     dotSet = "dot1";
     margin = {
-      top: 10,
+      top: 15,
       right: 15,
       bottom: 25,
       left: 40
@@ -48,7 +47,9 @@
       xAxis = d3.svg.axis().scale(d3.scale.linear().domain(domainX).range([0, width])).orient("bottom");
       yAxis = d3.svg.axis().scale(d3.scale.linear().domain(domainY).range([height, 0])).orient("left");
       $svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-      return $svg.append("g").attr("class", "y axis").call(yAxis);
+      $svg.append("g").attr("class", "y axis").call(yAxis);
+      $svg.append("text").attr("transform", "translate(8," + (height + 5) + ")").attr("dx", width).attr("text-anchor", "middle").text(parmas.d_name[0]);
+      return $svg.append("text").attr("text-anchor", "middle").attr("dx", 5).text(parmas.d_name[1]);
     };
   });
 

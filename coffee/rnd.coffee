@@ -1,6 +1,6 @@
 define([
 ], () ->
-    console.log("rnd")
+    #console.log("rnd")
     _toString = Object.prototype.toString
     _PI = Math.PI
 
@@ -45,65 +45,88 @@ define([
         randSeed = randSeed >>> 12
         (randSeed / Math.pow(2, 20))
 
-    rand_mm = (_min, _max) ->
+    rand_mm = (params) ->
         ((!(count % 200)) && (
             srand()
             count = 0
         ))
         count++
 
-        _min = if (!isNaN(_min) && typeof _min == "number") then (_min) else (0)
-        _max = if (!isNaN(_max) && typeof _max =="number") then (_max) else (1)
+        params = if (params) then (params) else ({})
+        xysig = if (params.xysig) then (params.xysig) else (["x", "y"])
+        _min = if (!isNaN(params._min) && typeof params._min == "number") then (params._min) else (0)
+        _max = if (!isNaN(params._max) && typeof params._max == "number") then (params._max) else (1)
 
         # 含 _max 的話改成 (_max-_min+1)
         _seed = rand_f()
         _num = _seed * (_max - _min) + _min
 
-        {'x': _seed, 'y': _num}
+        val = {
+            x: _seed,
+            y: _num
+        }
+        {'x': val[xysig[0]], 'y': val[xysig[1]]}
 
-    rand_Gaussian = (a, b, c) ->
+    rand_Gaussian = (params) ->
         ((!(count % 200)) && (
             srand()
             count = 0
         ))
         count++
 
+        params = if (params) then (params) else ({})
+        xysig = if (params.xysig) then (params.xysig) else (["x", "y"])
         # f(x) = a*exp(-(x-b)**/2(c**))
-        a = if (!!a) then (a) else (1 / Math.sqrt(2 * _PI))
-        b = if (!!b) then (b) else (0)
-        c = if (!!c) then (c) else (1)
+        a = if (!!params.a) then (params.a) else (1 / Math.sqrt(2 * _PI))
+        b = if (!!params.b) then (params.b) else (0)
+        c = if (!!params.c) then (params.c) else (1)
 
         _max = 4 * Math.abs(c)
         _min = -_max
-        _num = rand_mm(_min, _max).y
+        _num = rand_mm({
+            _min: _min,
+            _max: _max
+        }).y
         _seed = _num
         _num = -(((_num - b) * (_num - b)) / 2 * c * c)
         _num = a * Math.exp(_num)
 
-        {'x': _seed, 'y': _num}
+        val = {
+            x: _seed,
+            y: _num
+        }
+        {'x': val[xysig[0]], 'y': val[xysig[1]]}
 
 
-    rand_cos = (scaleLv, limit, dtheta) ->
+    rand_cos = (params) ->
         (!(count % 200) && srand())
         count++
 
-        scaleLv = if (!!scaleLv) then (scaleLv) else (1)
-        limit = if (!!limit) then (limit) else (1)
-        dtheta = if (!!dtheta) then (dtheta) else (0)
+        params = if (params) then (params) else ({})
+        xysig = if (params.xysig) then (params.xysig) else (["x", "y"])
+        scaleLv = if (!!params.scaleLv) then (params.scaleLv) else (1)
+        limit = if (!!params.limit) then (params.limit) else (1)
+        dtheta = if (!!params.dtheta) then (params.dtheta) else (0)
         _max = _PI * scaleLv + dtheta
         _min = dtheta
-        _num = rand_mm(_min, _max).y
+        _num = rand_mm({
+            _min: _min,
+            _max: _max
+        }).y
         _seed = _num
         _num = limit * Math.cos(_seed)
 
-        {'x': _seed, 'y': _num}
+        val = {
+            x: _seed,
+            y: _num
+        }
+        {'x': val[xysig[0]], 'y': val[xysig[1]]}
     
 
     
     rand_boxmuller = (params) ->
         params = if (params) then (params) else ({})
-        xsig = if (params.xsig) then (params.xsig) else ("x")
-        ysig = if (params.ysig) then (params.ysig) else ("p")
+        xysig = if (params.xysig) then (params.xysig) else (["x", "p"])
         p = rand_f()
         R = Math.sqrt((-2 * Math.log(p)))
 
@@ -119,14 +142,13 @@ define([
 
         #console.log('seed：' + theta)
         #console.log('rnd：' + x)
-
         val = {
             p: p,
             x: x,
             y: y,
             R: R
         }
-        {'x': val[xsig], 'y': val[ysig]}
+        {'x': val[xysig[0]], 'y': val[xysig[1]]}
     
     RNDS = {
         'rand_mm': rand_mm,

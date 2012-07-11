@@ -1,0 +1,27 @@
+.axis path, .axis line, .minor path, .minor line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+
+.minor :not(.minor) {
+  display: none; }
+
+.line1 {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px; }
+
+.line2 {
+  fill: none;
+  stroke: red;
+  stroke-width: 1.5px; }
+
+.dot1 {
+  fill: white;
+  stroke: steelblue;
+  stroke-width: 1.5px; }
+
+.dot2 {
+  fill: white;
+  stroke: red;
+  stroke-width: 1.5px; }

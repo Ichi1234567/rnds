@@ -50,7 +50,7 @@ require([
                 h: h,
                 domainX: domainX[mode],
                 domainY: domainY[mode],
-                d_name: [args.xsig, args.ysig]
+                d_name: args.xysig
             })
         )
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>strftime</title>
+    <link href="css/axis.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+  <h1>RANDOM NUMBER DISTRIBUTION GRAPH</h1>
+  <h3>mode selector：
+      <select id="mode">
+          <option value="rand_mm">0-1</option>
+          <option value="rand_g">gaussian</option>
+          <option value="rand_cos">cos</option>
+          <option value="rand_boxmuller">box muller</option>
+      </select>
+      <button id="submit">確定</button>
+  </h2>
+  <div id="demo">
+  </div>
+
+    <script src="http://d3js.org/d3.v2.js"></script>
+    <script type="text/javascript" src="http://busterjs.org/releases/latest/buster-test.js"></script>
+    <script type="text/javascript" src="http://busterjs.org/examples/strftime/strftime.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+    <script type="text/javascript" src="javascript/vender/mustache.js"></script>
+
+    <script>
+    var require = {"baseUrl":'javascript'}
+    </script>
+    <script data-main="main-rnds" src="http://requirejs.org/docs/release/1.0.7/minified/require.js"></script>
+  </body>
+</html>
+

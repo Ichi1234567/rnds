@@ -1,6 +1,4 @@
 require([
-    "rnd",
-    "display",
     "jq-rnds"
 ], (RNDS) ->
     #console.log("main")

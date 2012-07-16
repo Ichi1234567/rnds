@@ -1,6 +1,6 @@
 (function() {
 
-  require(["rnd", "display", "jq-rnds"], function(RNDS) {
+  require(["jq-rnds"], function(RNDS) {
     var rnd_num;
     rnd_num = 500;
     return $("#submit").click(function() {

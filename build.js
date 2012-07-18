@@ -1,6 +1,6 @@
 {
   "baseUrl":'javascript',
-  name: "main",
+  name: "main-rnds",
   out: 'javascript/main-built.js',
   paths: {
     "jquery-mousewheel":'vender/jquery-mousewheel/jquery.mousewheel',

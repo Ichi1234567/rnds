@@ -1,7 +1,7 @@
 (function() {
 
   define([], function() {
-    var RAND_MAX, RNDS, count, n1, n2, randSeed, rand_Gaussian, rand_boxmuller, rand_cos, rand_f, rand_i, rand_mm, srand, _PI, _date, _toString;
+    var RAND_MAX, RNDS, count, n1, n2, randSeed, rand_Gaussian, rand_boxmuller, rand_cos, rand_cos2, rand_f, rand_i, rand_mm, srand, _PI, _date, _toString;
     _toString = Object.prototype.toString;
     _PI = Math.PI;
     RAND_MAX = 32767;
@@ -109,6 +109,30 @@
         'y': val[xysig[1]]
       };
     };
+    rand_cos2 = function(params) {
+      var R, p, t, theta, val, x, xysig, y;
+      !(count % 200) && srand();
+      count++;
+      params = params ? params : {};
+      xysig = params.xysig ? params.xysig : ["theta", "x"];
+      p = rand_f();
+      R = p;
+      t = rand_f();
+      theta = _PI * t;
+      x = R * Math.cos(theta);
+      y = R * Math.sin(theta);
+      val = {
+        p: p,
+        R: R,
+        x: x,
+        y: y,
+        theta: theta
+      };
+      return {
+        'x': val[xysig[0]],
+        'y': val[xysig[1]]
+      };
+    };
     rand_boxmuller = function(params) {
       var R, p, t, theta, val, x, xysig, y;
       params = params ? params : {};
@@ -134,6 +158,7 @@
       'rand_mm': rand_mm,
       'rand_g': rand_Gaussian,
       'rand_cos': rand_cos,
+      'rand_cos2': rand_cos2,
       'rand_boxmuller': rand_boxmuller
     };
     return RNDS;

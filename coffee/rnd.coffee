@@ -121,6 +121,31 @@ define([
             y: _num
         }
         {'x': val[xysig[0]], 'y': val[xysig[1]]}
+
+    rand_cos2 = (params) ->
+        (!(count % 200) && srand())
+        count++
+
+        params = if (params) then (params) else ({})
+        xysig = if (params.xysig) then (params.xysig) else (["theta", "x"])
+        p = rand_f()
+        #R = Math.sqrt((-2 * Math.log(p)))
+        R = p
+        t = rand_f()
+        theta = _PI * t
+        #_num = R * (1 - Math.cos(theta))
+        x = R * Math.cos(theta)
+        y = R * Math.sin(theta)
+
+        val = {
+            p: p,
+            R: R,
+            x: x,
+            y: y,
+            theta: theta
+        }
+        {'x': val[xysig[0]], 'y': val[xysig[1]]}
+        #{'x': x, 'y': y}
     
 
     
@@ -149,11 +174,13 @@ define([
             R: R
         }
         {'x': val[xysig[0]], 'y': val[xysig[1]]}
+        #{'x': val[xysig[0]], 'y': val[xysig[1]]}
     
     RNDS = {
         'rand_mm': rand_mm,
         'rand_g': rand_Gaussian,
         'rand_cos': rand_cos,
+        'rand_cos2': rand_cos2,
         'rand_boxmuller': rand_boxmuller
     }
 

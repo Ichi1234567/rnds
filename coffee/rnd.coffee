@@ -146,6 +146,33 @@ define([
         }
         {'x': val[xysig[0]], 'y': val[xysig[1]]}
         #{'x': x, 'y': y}
+
+    rand_line = (params) ->
+        (!(count % 200) && srand())
+        count++
+
+        params = if (params) then (params) else ({})
+        xysig = if (params.xysig) then (params.xysig) else (["x", "y"])
+
+        # 2x - y = 0
+        # let u = 2x, v = -y ---> u + v = 0
+        area = rand_mm({
+            _min: 0,
+            _max: 4
+        }).y
+        x = Math.sqrt(area)
+        y = rand_mm({
+            _min: 0,
+            _max: (x * 2)
+        }).y
+        
+        val = {
+            x: x,
+            y: y
+        }
+
+        #{'x': val[xysig[0]], 'y': val[xysig[1]]}
+        {x: x, y: y}
     
 
     
@@ -181,6 +208,7 @@ define([
         'rand_g': rand_Gaussian,
         'rand_cos': rand_cos,
         'rand_cos2': rand_cos2,
+        'rand_line': rand_line,
         'rand_boxmuller': rand_boxmuller
     }
 

@@ -1,7 +1,7 @@
 (function() {
 
   define([], function() {
-    var RAND_MAX, RNDS, count, n1, n2, randSeed, rand_Gaussian, rand_boxmuller, rand_cos, rand_cos2, rand_f, rand_i, rand_mm, srand, _PI, _date, _toString;
+    var RAND_MAX, RNDS, count, n1, n2, randSeed, rand_Gaussian, rand_boxmuller, rand_cos, rand_cos2, rand_f, rand_i, rand_line, rand_mm, srand, _PI, _date, _toString;
     _toString = Object.prototype.toString;
     _PI = Math.PI;
     RAND_MAX = 32767;
@@ -133,6 +133,30 @@
         'y': val[xysig[1]]
       };
     };
+    rand_line = function(params) {
+      var area, val, x, xysig, y;
+      !(count % 200) && srand();
+      count++;
+      params = params ? params : {};
+      xysig = params.xysig ? params.xysig : ["x", "y"];
+      area = rand_mm({
+        _min: 0,
+        _max: 4
+      }).y;
+      x = Math.sqrt(area);
+      y = rand_mm({
+        _min: 0,
+        _max: x * 2
+      }).y;
+      val = {
+        x: x,
+        y: y
+      };
+      return {
+        x: x,
+        y: y
+      };
+    };
     rand_boxmuller = function(params) {
       var R, p, t, theta, val, x, xysig, y;
       params = params ? params : {};
@@ -159,6 +183,7 @@
       'rand_g': rand_Gaussian,
       'rand_cos': rand_cos,
       'rand_cos2': rand_cos2,
+      'rand_line': rand_line,
       'rand_boxmuller': rand_boxmuller
     };
     return RNDS;

@@ -35,6 +35,7 @@ require([
             rand_cos2: [0, Math.PI],
             rand_g: [-4, 4],
             rand_mm: [0, 1],
+            rand_line:[0, 3],
             rand_boxmuller: [-4, 4]
         }
         domainY = {
@@ -42,6 +43,7 @@ require([
             rand_cos2: [-1, 1],
             rand_g: [0, 0.6],
             rand_mm: [0, 1],
+            rand_line: [0, 5],
             rand_boxmuller: [0, 1]
         }
         

@@ -15,6 +15,7 @@ require([
 
         _xysig = {
             default: ['x', 'y'],
+            rand_cos2: ['theta', 'x']
             rand_boxmuller: ['x', 'p']
         }
 
@@ -31,12 +32,14 @@ require([
         ))
         domainX = {
             rand_cos: [0, Math.PI],
+            rand_cos2: [0, Math.PI],
             rand_g: [-4, 4],
             rand_mm: [0, 1],
             rand_boxmuller: [-4, 4]
         }
         domainY = {
             rand_cos: [-1, 1],
+            rand_cos2: [-1, 1],
             rand_g: [0, 0.6],
             rand_mm: [0, 1],
             rand_boxmuller: [0, 1]
